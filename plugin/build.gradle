@@ -2,20 +2,29 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 dependencies {
+    compile "com.android.tools.build:gradle:2.3.0"
     compile gradleApi()
     compile localGroovy()
+    compile "com.android.tools.build:transform-api:1.5.0"
+    compile "javassist:javassist:3.12.1.GA"
+    compile "commons-io:commons-io:2.5"
 }
 
 repositories {
     mavenCentral()
 }
 
-group='com.micky'
-version='2.0.0'
+group = 'com.micky'
+version = '3.0.11'
 
 uploadArchives {
     repositories {
         mavenDeployer {
+            //提交到远程服务器：
+            // repository(url: "http://www.xxx.com/repos") {
+            //    authentication(userName: "admin", password: "admin")
+            // }
+
             repository(url: uri('../repo'))
         }
     }
