@@ -20,6 +20,23 @@ public class MyPlugin implements Plugin<Project> {
         System.out.println("************${project.extensions.findByName("testExt") == null}************")
         System.out.println("************${project.extensions.findByName("testExt").hasProperty("modelName")}************")
 
+        project.afterEvaluate {
+            println "************afterEvaluate************"
+            println "************${project.testExt.modelName} afterEvaluate************"
+            def preBuild = project.tasks.findByName("preBuild")
+            if (preBuild) {
+                def myTask = project.task('myTask') {
+                    doLast {
+                        println "************task test************"
+                        println "************${project.testExt.modelName}************"
+                    }
+                }
+                preBuild.dependsOn(myTask)
+            } else {
+                println "************no preBuild************"
+            }
+        }
+
         def android = project.extensions.getByType(AppExtension)
         if (project.plugins.hasPlugin(AppPlugin)) {
             android.applicationVariants.all { variant ->
@@ -32,11 +49,6 @@ public class MyPlugin implements Plugin<Project> {
                 System.out.println("************${name}************")
                 System.out.println("************${versionName}************")
                 System.out.println("************${versionCode}************")
-            }
-        }
-        project.task('myTask') {
-            doLast {
-                println "************Hi this is micky's plugin************"
             }
         }
 
