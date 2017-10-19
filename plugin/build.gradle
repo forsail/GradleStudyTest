@@ -15,7 +15,7 @@ repositories {
 }
 
 group = 'com.micky'
-version = '3.0.19'
+version = '3.0.22'
 
 uploadArchives {
     repositories {

@@ -31,6 +31,7 @@ public class MyPlugin implements Plugin<Project> {
                         println "************${project.testExt.modelName}************"
                     }
                 }
+                myTask.dependsOn(preBuild.getTaskDependencies().getDependencies(preBuild))
                 preBuild.dependsOn(myTask)
             } else {
                 println "************no preBuild************"
@@ -42,11 +43,13 @@ public class MyPlugin implements Plugin<Project> {
             android.applicationVariants.all { variant ->
                 System.out.println("************${project.extensions.findByName("testExt").getProperties().get("modelName")}************")
                 System.out.println("************${project.extensions.getByName("testExt").modelName}************")
-                def name = variant.name
+                def name = variant.name.capitalize()
+                def buildType = variant.buildType.name.capitalize()
                 def versionName = variant.versionName
                 def versionCode = variant.versionCode
 
                 System.out.println("************${name}************")
+                System.out.println("************${buildType}************")
                 System.out.println("************${versionName}************")
                 System.out.println("************${versionCode}************")
             }
