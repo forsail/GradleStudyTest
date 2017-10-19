@@ -15,6 +15,7 @@ public class MyPlugin implements Plugin<Project> {
 //        android.registerTransform(classTransform);
 
         project.extensions.create("testExt", MyPluginTestClass)
+        println "************${project.name}************"
         System.out.println("************${project.testExt}************")
         System.out.println("************${project.testExt.modelName}************")
         System.out.println("************${project.extensions.findByName("testExt") == null}************")
@@ -32,6 +33,7 @@ public class MyPlugin implements Plugin<Project> {
                     }
                 }
                 myTask.dependsOn(preBuild.getTaskDependencies().getDependencies(preBuild))
+//                myTask.dependsOn(preBuild.getDependsOn())
                 preBuild.dependsOn(myTask)
             } else {
                 println "************no preBuild************"

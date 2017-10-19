@@ -10,7 +10,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         //group:module(插件项目的工程名也可以在setting.gradle里自定义):version
-        classpath 'com.micky:plugin:3.0.22'
+        classpath 'com.micky:plugin:3.0.24'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
